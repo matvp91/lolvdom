@@ -3,7 +3,7 @@
 A quick and dirty implementation of virtual dom, not to be taken seriously. Nonetheless, it should give you a basic idea of how virtual dom diffing works (and that was my main goal to begin with).
 
 * Does somewhat of a decent job at diffing virtual trees.
-* Handles components as functions with JSX markup as return value.
+* Wannabe React-like component structure (components are merely functions, nothing fancy).
 * Dirty implementation of "onAnyEvent".
 * Renders lists, but does not uniquely identify list children which would f*ck up diffing (fyi, think of React's `key` reserved prop). Try `{arr.map(item => <div>{item}</div>)}` at own risk.
 * Only works with nodes & text (strings), does not cast any other value to it's textual representation (yet?). See `{String(count)}` instead of `{count}` but that would be an easy fix.
