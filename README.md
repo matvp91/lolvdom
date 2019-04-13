@@ -5,8 +5,8 @@ A quick and dirty implementation of virtual dom, not to be taken seriously. None
 * Does somewhat of a decent job at diffing virtual trees.
 * Handles components as functions with JSX markup as return value.
 * Dirty implementation of "onAnyEvent".
-* Renders lists, but does not uniquely identify list children which would f*ck up diffing (fyi, think of React's `key` reserved prop).
-* Some code is not pretty...
+* Renders lists, but does not uniquely identify list children which would f*ck up diffing (fyi, think of React's `key` reserved prop). Try `{arr.map(item => <div>{item}</div>)}` at own risk.
+* Only works with nodes & text (strings), does not cast any other value to it's textual representation (yet?).
 
 ```javascript
 /* @jsx vdom.createElement */
