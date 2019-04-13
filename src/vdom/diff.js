@@ -1,4 +1,5 @@
 import renderNode from './renderNode';
+import { setAttributes } from './utils';
 
 export default function diff(rootEl, tree, prevTree) {
   if (!tree) {
@@ -29,14 +30,5 @@ export default function diff(rootEl, tree, prevTree) {
   }
 
   // Update attributes.
-  for (const [key, value] of Object.entries(tree.attrs)) {
-    rootEl.setAttribute(key, value);
-  }
-
-  // Remove unused attributes.
-  for (const key in prevTree.attrs) {
-    if (!(key in tree.attrs)) {
-      rootEl.removeAttribute(k);
-    }
-  }
+  setAttributes(rootEl, tree.attrs, prevTree.attrs);
 }

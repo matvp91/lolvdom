@@ -1,3 +1,5 @@
+import { setAttributes } from './utils';
+
 export default function renderNode(node) {
   if (typeof node === 'string') {
     return document.createTextNode(node);
@@ -5,9 +7,7 @@ export default function renderNode(node) {
 
   const el = document.createElement(node.tagName);
 
-  for (const [key, value] of Object.entries(node.attrs)) {
-    el.setAttribute(key, value);
-  }
+  setAttributes(el, node.attrs);
 
   for (const child of node.children) {
     el.appendChild(renderNode(child));

@@ -2,34 +2,45 @@
 
 import vdom from './vdom';
 
-function App({ text, count = 0 }) {
+function App({ counter, increment }) {
+  let style = '';
+  if (counter > 5) {
+    style = 'color: red';
+  }
+  if (counter > 10) {
+    style = 'color: green';
+  }
+
   return (
     <div>
-      <input type="text" />
-      <Text text={text} />
-      {!count ? (
-        <img src="https://media.giphy.com/media/cuPm4p4pClZVC/giphy.gif" />
-      ) : (
-        <img src="https://media1.giphy.com/media/3ohzdSDgGwT5CaWMTu/giphy.gif" />
-      )}
-      {!!count && <div>I AM COUNT</div>}
+      <div style={style}>{String(counter)}</div>
+      <button onClick={increment}>+</button>
+      {counter > 5 && <div>I am bigger than 5</div>}
     </div>
   );
 }
 
-function Text({ text }) {
-  return (
-    <span>
-      <input type="checkbox" />
-      nn{text}
-    </span>
-  );
+const initialState = {
+  counter: 0,
+};
+let state = { ...initialState };
+
+function render() {
+  const actions = {
+    increment: () => {
+      setState({
+        counter: state.counter + 1,
+      });
+    },
+  };
+  vdom.render(<App {...state} {...actions} />, document.getElementById('app'));
 }
+render();
 
-const rootEl = document.getElementById('app');
-
-vdom.render(<App text="Hello first text" />, rootEl);
-
-setTimeout(() => {
-  vdom.render(<App text="Hello second text" count={1} />, rootEl);
-}, 2000);
+const setState = newState => {
+  state = {
+    ...state,
+    ...newState,
+  };
+  render();
+};
