@@ -25,15 +25,17 @@ const initialState = {
 };
 let state = { ...initialState };
 
+function increment() {
+  setState({
+    counter: state.counter + 1,
+  });
+}
+
 function render() {
-  const actions = {
-    increment: () => {
-      setState({
-        counter: state.counter + 1,
-      });
-    },
-  };
-  vdom.render(<App {...state} {...actions} />, document.getElementById('app'));
+  vdom.render(
+    <App {...state} increment={increment} />,
+    document.getElementById('app'),
+  );
 }
 render();
 
