@@ -1,7 +1,7 @@
 /* @jsx vdom.createElement */
 
 import vdom from './vdom';
-
+let n = 0;
 function App({ counter, increment }) {
   let style = '';
   if (counter > 5) {
@@ -10,6 +10,7 @@ function App({ counter, increment }) {
   if (counter > 10) {
     style = 'color: green';
   }
+  n += 1;
 
   return (
     <div>
